@@ -1,6 +1,70 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.24.4
+* Improved performance by using caching better (by @thoughtspile).
+
+## 4.24.3
+* Updated Firefox ESR (by @fpapado).
+
+## 4.24.2
+* Clarify outdated `caniuse-lite` warning text.
+
+## 4.24.1
+* Added months since last `caniuse-lite` update to the warning (by @mezhnin).
+
+## 4.24.0
+* Added `browserslist.findConfigFile()` helper (by @JLHwung).
+
+## 4.23.3
+* Fixed `>=` query for `ios` (by @syi0808).
+
+## 4.23.2
+* Updated Firefox ESR.
+
+## 4.23.1
+* Fixed feature query with mobile to desktop when caniuse lags (by @steverep).
+
+## 4.23.0
+* Added `BROWSERSLIST_ROOT_PATH` (by @teleclimber).
+
+## 4.22.3
+* Fixed white spaces support in `supports` query (@g-plane).
+* Fixed shared config like `@company/package/browserslist-config` (@boucodes).
+
+## 4.22.2
+* Fixed idempotency in time queries with `mobileToDesktop` (by Aliaksei Sapach).
+
+## 4.22.1
+* Updated Firefox ESR (by @lerkor).
+
+## 4.22
+* Added `fully supports` query (by Ben Scott).
+* Added `partially supports` alias for `supports` query (by Ben Scott).
+
+## 4.21.11
+* Added warning to `--update-db` to move to new CLI (by Ivan Vasilev).
+* Fixed docs (by Tatsunori Uchino).
+
+## 4.21.10
+* Updated Firefox ESR.
+
+## 4.21.9
+* Fixed Opera Mobile edge cases (by Steve Repsher).
+
+## 4.21.8
+* Fixed `supports` query and `mobileToDesktop` (by Steve Repsher).
+
+## 4.21.7
+* Fixed last queries for Android (by Steve Repsher).
+
+## 4.21.6
+* Fixed time queries with `mobileToDesktop` (by Steve Repsher).
+* Fixed docs (by Tatsunori Uchino, Will Stone, and Dominik Pschenitschni).
+
+## 4.21.5
+* Fixed running Browserslist in browser environment.
+
 ## 4.21.4
 * Updated Firefox ESR.
 

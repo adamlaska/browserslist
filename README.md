@@ -19,7 +19,7 @@ when you add the following to `package.json`:
 
 ```json
   "browserslist": [
-    "defaults and supports es6-module",
+    "defaults and fully supports es6-module",
     "maintained node versions"
   ]
 ```
@@ -29,7 +29,7 @@ Or in `.browserslistrc` config:
 ```yaml
 # Browsers that we support
 
-defaults and supports es6-module
+defaults and fully supports es6-module
 maintained node versions
 ```
 
@@ -46,15 +46,7 @@ You can check how config works at our playground: [`browsersl.ist`](https://brow
 <br>
 <br>
 <div align="center">
-  <a href="https://evilmartians.com/?utm_source=browserslist">
-    <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg"
-        alt="Sponsored by Evil Martians" width="236" height="54">
-  </a>
-
-  <a href="https://cube.dev/?ref=eco-browserslist-github">
-    <img src="https://user-images.githubusercontent.com/986756/154330861-d79ab8ec-aacb-4af8-9e17-1b28f1eccb01.svg"
-        alt="Supported by Cube" width="227" height="46">
-  </a>
+  <a href="https://evilmartians.com/?utm_source=browserslist"><img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54"></a>  <a href="https://cube.dev/?ref=eco-browserslist-github"><img src="https://user-images.githubusercontent.com/986756/154330861-d79ab8ec-aacb-4af8-9e17-1b28f1eccb01.svg" alt="Supported by Cube" width="227" height="46"></a>
 </div>
 
 [stylelint-no-unsupported-browser-features]: https://github.com/ismay/stylelint-no-unsupported-browser-features
@@ -86,6 +78,15 @@ You can check how config works at our playground: [`browsersl.ist`](https://brow
 * [Security Contact](#security-contact)
 * [For Enterprise](#for-enterprise)
 
+
+## Sponsors
+
+Browserslist needs your support. We are accepting donations
+[at Open Collective](https://opencollective.com/browserslist).
+
+<a href="https://www.springernature.com/"><img src="https://user-images.githubusercontent.com/19343/227742503-cf7fc2b3-9cc4-481c-97b8-68414d762fda.png" alt="Sponsored by Springer Nature Technology" width="154" height="54"></a>      <a href="https://workleap.com/"><img src="https://workleap.com/wp-content/uploads/2023/05/workleap-logo.svg" alt="Sponsored by Workleap" width="154" height="40"></a>
+
+
 ## Tools
 
 ### Analyze your Browserslist Config
@@ -101,14 +102,14 @@ You can check how config works at our playground: [`browsersl.ist`](https://brow
 * [`update-browserslist-db`] is a CLI tool to update browsers DB for queries
   like `last 2 version` or `>1%`.
 * [`browserslist-update-action`] is a GitHub Action to automatically
-  runs `update-browserslist-db` and proposes a pull request to merge updates.
+  run `update-browserslist-db` and proposes a pull request to merge updates.
 
 
 ### Show “We do not support your browser” Banner
 
 * [`browserslist-useragent-regexp`] compiles Browserslist query to a RegExp
   to test browser useragent.
-* [`browserslist-useragent-ruby`] is a Ruby library to checks browser
+* [`browserslist-useragent-ruby`] is a Ruby library to check browser
   by user agent string to match Browserslist.
 
 
@@ -116,8 +117,8 @@ You can check how config works at our playground: [`browsersl.ist`](https://brow
 
 * [`browserslist-ga`] and [`browserslist-ga-export`] download your website
   browsers statistics to use it in `> 0.5% in my stats` query.
-* [`browserslist-new-relic`] generate a custom usage data file for Browserslist
-* [`browserslist-adobe-analytics`] use Adobe Analytics data to target browsers.
+* [`browserslist-new-relic`] generates a custom usage data file for Browserslist
+* [`browserslist-adobe-analytics`] uses Adobe Analytics data to target browsers
   from your New Relic Browser data.
 
 
@@ -161,13 +162,12 @@ These extensions will add syntax highlighting for `.browserslistrc` files.
     ]
   ```
 
-* If you want to change the default set of browsers, we recommend combining
-  `last 2 versions`, `not dead` with a usage number like `> 0.2%`. This is
-  because `last n versions` on its own does not add popular old versions, while
-  only using a percentage above `0.2%` will in the long run make popular
-  browsers even more popular. We might run into a monopoly and stagnation
-  situation, as we had with Internet Explorer 6. Please use this setting
-  with caution.
+* If you want to change the default set of browsers, we recommend including
+  `last 2 versions, not dead, > 0.2%`. This is because `last n versions` on its
+  own does not add popular old versions, while only using a percentage of usage
+  numbers above `0.2%` will in the long run make popular browsers even more
+  popular. We might run into a monopoly and stagnation situation, as we had with
+  Internet Explorer 6. Please use this setting with caution.
 * Select browsers directly (`last 2 Chrome versions`) only if you are making
   a web app for a kiosk with one browser. There are a lot of browsers
   on the market. If you are making general web app you should respect
@@ -254,7 +254,8 @@ You can specify the browser and Node.js versions by queries (case insensitive):
   * `maintained node versions`: all Node.js versions, which are [still maintained]
     by Node.js Foundation.
 * Browsers versions:
-  * `iOS 7`: the iOS browser version 7 directly.
+  * `iOS 7`: the iOS browser version 7 directly. Note, that `op_mini`
+    has special version `all`.
   * `Firefox > 20`: versions of Firefox newer than 20.
     `>=`, `<` and `<=` work too. It also works with Node.js.
   * `ie 6-8`: selects an inclusive range of versions.
@@ -263,13 +264,20 @@ You can specify the browser and Node.js versions by queries (case insensitive):
     to PhantomJS runtime.
 * `extends browserslist-config-mycompany`: take queries from
   `browserslist-config-mycompany` npm package.
-* `supports es6-module`: browsers with support for specific features.
-  `es6-module` here is the `feat` parameter at the URL of the [Can I Use]
-  page. A list of all available features can be found at
-  [`caniuse-lite/data/features`].
+* By browser support:<br>
+  In these example queries `es6` and `es6-module` are the the `feat` parameter
+  from the URL of the [Can I Use] page. A list of all available features can be
+  found at [`caniuse-lite/data/features`].
+  * `fully supports es6`: browsers with full support for specific
+    features. For example, `fully supports css-grid` will omit Edge 12-15, as
+    those browser versions are marked as [having partial support].
+  * `partially supports es6-module` or `supports es6-module`:  browsers with
+    full or partial support for specific features. For example,
+    `partially supports css-grid` will include Edge 12-15 support, as those
+    browser versions are marked as [having partial support].
 * `browserslist config`: the browsers defined in Browserslist config. Useful
   in Differential Serving to modify user’s config like
-  `browserslist config and supports es6-module`.
+  `browserslist config and fully supports es6-module`.
 * `since 2015` or `last 2 years`: all versions released since year 2015
   (also `since 2015-03` and `since 2015-03-10`).
 * `unreleased versions` or `unreleased Chrome versions`:
@@ -285,6 +293,7 @@ You can add `not ` to any query.
 [still maintained]:            https://github.com/nodejs/Release
 [Can I Use]:                   https://caniuse.com/
 [Firefox Extended Support Release]: https://support.mozilla.org/en-US/kb/choosing-firefox-update-channel
+[having partial support]: https://caniuse.com/css-grid
 
 ### Grammar Definition
 
@@ -319,28 +328,31 @@ samsung 5
 
 The following table maps browser names & their target devices into identifiers used by browserslist.
 
-| Browser Name      | Desktop          | Android                   | iOS                      | Other Mobile      |
-| ------------------| ---------------- | ------------------------- | ------------------------ | ----------------- |
-| Android (WebView) |                  | `Android`                 |                          |                   |
-| Baidu             | `Baidu`          |                           |                          |                   |
-| BlackBerry        |                  |                           |                          | `BlackBerry` `bb` |
-| Chrome            | `Chrome`         | `ChromeAndroid` `and_chr` | ↪︎ `ios_saf`<sup>2</sup>  |                   |
-| Edge              | `Edge`           | ↪︎ `and_chr`               | ↪︎ `ios_saf`<sup>2</sup>  |                   |
-| Electron          | `Electron`       |                           |                          |                   |
-| Firefox           | `Firefox` `ff`   | `FirefoxAndroid` `and_ff` | ↪︎ `ios_saf`<sup>2</sup>  |                   |
-| Internet Explorer | `Explorer` `ie`  |                           |                          | `ie_mob`          |
-| Node.js           | `Node`           |                           |                          |                   |
-| [KaiOS Browser]   |                  |                           |                          | `kaios`           |
-| Opera             | `Opera`          | `op_mob` <sup>1</sup>     | ↪︎ `ios_saf`<sup>2</sup>  |                   |
-| [Opera Mini]      |                  | `OperaMini`               |                          |                   |
-| [QQ browser]      |                  | `and_qq`                  |                          |                   |
-| Safari            | `Safari`         |                           | `iOS` `ios_saf`          |                   |
-| Samsung Internet  |                  | `Samsung`                 |                          |                   |
-| [UC Browser]      |                  | `UCAndroid` `and_uc`      |                          |                   |
+| Browser Name             | Desktop         | Android                   | iOS                      | Other Mobile      |
+| ------------------------ | --------------- | ------------------------- | ------------------------ | ----------------- |
+| Android (WebView)        |                 | `Android`                 |                          |                   |
+| Baidu                    | `Baidu`         |                           |                          |                   |
+| BlackBerry               |                 |                           |                          | `BlackBerry` `bb` |
+| Chrome                   | `Chrome`        | `ChromeAndroid` `and_chr` | ↪︎ `ios_saf`<sup>2</sup> |                   |
+| Edge                     | `Edge`          | ↪︎ `and_chr`              | ↪︎ `ios_saf`<sup>2</sup> |                   |
+| Electron                 | `Electron`      |                           |                          |                   |
+| Firefox                  | `Firefox` `ff`  | `FirefoxAndroid` `and_ff` | ↪︎ `ios_saf`<sup>2</sup> |                   |
+| Internet Explorer        | `Explorer` `ie` |                           |                          | `ie_mob`          |
+| Node.js                  | `Node`          |                           |                          |                   |
+| [KaiOS Browser]          |                 |                           |                          | `kaios`           |
+| Opera                    | `Opera`         | `op_mob` <sup>1</sup>     | ↪︎ `ios_saf`<sup>2</sup> |                   |
+| [Opera Mini]<sup>3</sup> |                 | `OperaMini` `op_mini`     |                          |                   |
+| [QQ browser]             |                 | `and_qq`                  |                          |                   |
+| Safari                   | `Safari`        |                           | `iOS` `ios_saf`          |                   |
+| Samsung Internet         |                 | `Samsung`                 |                          |                   |
+| [UC Browser]             |                 | `UCAndroid` `and_uc`      |                          |                   |
 
 - `↪︎ name` implies that the browser uses the same engine captured by `name`
 - <sup>1</sup> [Opera Mobile ≈ Chrome Android](https://github.com/Fyrd/caniuse/issues/5602#issuecomment-792385127)
 - <sup>2</sup> [All iOS browsers use WebKit](https://en.wikipedia.org/wiki/WebKit)
+- <sup>3</sup> Opera Mini has 2 modes “Extreme” and “High” for data saving.
+  `op_mini` targets at the “Extreme” one.
+  “High” is compatible with the normal Opera Mobile.
 
 [KaiOS Browser]: https://medium.com/design-at-kai/what-you-didnt-know-about-kaios-browser-53937ea1636
 [QQ browser]: https://en.wikipedia.org/wiki/QQ_browser
@@ -671,7 +683,35 @@ with [environment variables]:
   BROWSERSLIST_DANGEROUS_EXTEND=1 npx webpack
    ```
 
+* `BROWSERSLIST_ROOT_PATH` to prevent reading files above this path.
+
+   ```sh
+  BROWSERSLIST_ROOT_PATH=. npx webpack
+   ```
+
 [environment variables]: https://en.wikipedia.org/wiki/Environment_variable
+
+### `browserslist.coverage()`
+
+Return browsers market coverage.
+
+```js
+const browsers = browserslist('> 1% in US')
+browserslist.coverage(browsers, 'US') //=> 83.1
+```
+
+### `browserslist.loadConfig()`
+
+It is like calling `browserslist()`, but it returns config’s queries,
+not browsers.
+
+```js
+browserslist.loadConfig({ path: process.cwd() }) ?? browserslist.defaults
+```
+
+### `browserslist.defaults`
+
+An array with default queries.
 
 
 ## Cache
